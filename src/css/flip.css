@@ -52,14 +52,14 @@
     transition: transform 0.3s;
 }
 
-.portfolio-item:hover .primary   {
+img:hover .primary   {
         -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
         opacity: 0;
 
 }
 
-.portfolio-item:hover .secondary{
+img:hover .secondary{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     opacity: 1;

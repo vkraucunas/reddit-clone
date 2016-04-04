@@ -2,3 +2,16 @@
 body {
     background-color: #4C3C3B;
 }
+
+input {
+    background-color: rgba(255,255,255,.5);
+}
+
+.well {
+    background-color: #82877B;
+}
+
+img {
+    height: 250px;
+    width: 175px;
+}

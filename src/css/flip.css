@@ -14,17 +14,17 @@
     transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
 }
-img:hover .primary {
+.imgChunk:hover .primary {
     -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
-img:hover .secondary {
+.imgChunk:hover .secondary {
     -webkit-transform: rotateY(0);
           transform: rotateY(0);
 }
 */
 
-img {
+.imgChunk {
     position: relative;
 }
 
@@ -52,14 +52,14 @@ img {
     transition: transform 0.3s;
 }
 
-img:hover .primary   {
+.imgChunk:hover .primary   {
         -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
         opacity: 0;
 
 }
 
-img:hover .secondary{
+.imgChunk:hover .secondary{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     opacity: 1;

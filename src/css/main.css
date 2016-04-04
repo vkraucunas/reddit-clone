@@ -33,3 +33,19 @@ img {
 .green {
     color: #2AC830;
 }
+
+.exit {
+    animation: pulsate 3s infinite ease-out;;
+
+}
+
+.ng-enter{
+    transition: 0.5s ease all;
+    opacity: 0;
+}
+
+.ng-leave{
+    transition: 0.5s ease all;
+    opacity: 1;
+
+}

@@ -58,7 +58,6 @@
         </nav>
     </header>
 
-    {{search}}
     <main>
         <div class="container"
              ng-show="addForm">
@@ -102,7 +101,8 @@
         </div>
         <div class="container">
             <div class="row well"
-                 ng-repeat="post in searchResults">
+                 ng-repeat="post in searchResults"
+                 ng-show="searchResults.include(search) || search === ''">
                 <div class="post"
                      >
                     <div class="row">
@@ -124,16 +124,23 @@
                             <p>{{post.user}}</p>
                             <p>{{post.description}}</p>
                             <div>
-                                <p am-time-ago="post.date"></p>
-                                <p class="inline" ng-click="toggleComments(post.id)">
+                                <i class="fa fa-calendar-o inline"></i>
+                                <p am-time-ago="post.date"
+                                   class="inline">
+                                </p>
+                                <p class="inline"
+                                   ng-click="toggleComments(post.id)">
                                     {{post.comments.length}}
                                     <ng-pluralize count="post.comments.length"
                                           when="{'1': 'Comment',
                                                  'other': 'Comments'}">
                                     </ng-pluralize>
                                 </p>
-                                <p class="inline" ng-click="toggleAddComment(post.id)">Add Comment</p>
-
+                                <i class="fa fa-plus-square-o"></i>&nbsp;&nbsp;
+                                <p class="inline"
+                                   ng-click="toggleAddComment(post.id)">
+                                    Add Comment
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -179,6 +186,7 @@
         </div>
     </main>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/angular.moment/1.0.0-beta.5/angular-moment.min.js"></script>
     <!-- <script src="components/moment/moment.js"></script>

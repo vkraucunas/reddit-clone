@@ -58,20 +58,20 @@
     <main>
         <div class="container"
              ng-show="addForm">
-            <form ng-submit="postForm" class="form-horizontal">
+            <form ng-submit="addPost()" class="form-horizontal">
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Username</label>
                     <div class="col-lg-10">
                         <input type="text"
-                           ng-model="user"
-                           required>
+                               ng-model="newPost.user"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Title</label>
                     <div class="col-lg-10">
                         <input type="text"
-                               ng-model="title"
+                               ng-model="newPost.title"
                                required>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                     <label for="inputEmail" class="col-lg-2 control-label">Image URL</label>
                     <div class="col-lg-10">
                         <input type="text"
-                               ng-model="backupImg"
+                               ng-model="newPost.backupImg"
                                required>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <label for="inputEmail" class="col-lg-2 control-label">Description</label>
                     <div class="col-lg-10">
                         <input type="text"
-                               ng-model="description"
+                               ng-model="newPost.description"
                                required>
                     </div>
                 </div>
@@ -102,16 +102,28 @@
                 <div class="post"
                      >
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <img src="{{post.backupImg}}" alt="post image">
                         </div>
-                        <div class="col-xs-8">
-                            <h3>{{post.title}}  |  <i class="fa fa-plus"></i> <i class="fa fa-minus-circle"></i> {{post.votes}}</h3>
+                        <div class="col-xs-9">
+                            <h3>{{post.title}}  |
+                                <i class="fa fa-plus"
+                                   ng-click="upVote(post.id)"></i>&nbsp;
+                                <i class="fa fa-minus-circle"
+                                   ng-click="downVote(post.id)"></i>&nbsp;
+                                {{post.votes}}
+                            </h3>
                             <p>{{post.user}}</p>
                             <p>{{post.description}}</p>
                             <div>
-                                <p class="inline">{{post.date}}</p>
-                                <p class="inline" ng-click="toggleComments(post.id)">{{post.comments.length}} Comments</p>
+                                <p class="inline">{{post.date | date}}</p>
+                                <p class="inline" ng-click="toggleComments(post.id)">
+                                    {{post.comments.length}}
+                                    <ng-pluralize count="post.comments.length"
+                                          when="{'1': 'Comment',
+                                                 'other': 'Comments'}">
+                                    </ng-pluralize>
+                                </p>
                                 <p class="inline" ng-click="toggleAddComment(post.id)">Add Comment</p>
 
                             </div>
@@ -131,21 +143,22 @@
                 <div class="row addCommentForm"
                      ng-show="post.expandedAddComment">
                     <h4>Add a Comment</h4>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal"
+                          ng-submit="addComment(post.id)">
                         <div class="form-group">
                             <label for="inputEmail" class="col-lg-2 control-label">Username</label>
                             <div class="col-lg-10">
                                 <input type="text"
-                                   ng-model="user"
-                                   required>
+                                       ng-model="newComment.user"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail" class="col-lg-2 control-label">Comment</label>
                             <div class="col-lg-10">
                                 <input type="text"
-                                   ng-model="text"
-                                   required>
+                                       ng-model="newComment.text"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group">

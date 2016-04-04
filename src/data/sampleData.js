@@ -1,9 +1,21 @@
 var samplePosts = [
+
+    {
+        id: 2,
+        title: "Ripped off Toenail",
+        user: "Ben23423",
+        date: '2016-03-08T15:31:28.473Z',
+        backupImg: "http://media.treehugger.com/assets/images/2015/07/sea-bunny-jorunna-parva.jpg.662x0_q70_crop-scale.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png",
+        votes: 0,
+        description: "Cheese triangles cut the cheese cheesecake. Rubber cheese squirty cheese cheese slices parmesan halloumi the big cheese swiss cheesecake. Who moved my cheese caerphilly fromage frais brie cottage cheese.",
+        comments: []
+    },
     {
         id: 1,
         title: "Gruesome neck pop!",
         user: "Death",
-        date: "January 18, 2016",
+        date: '2016-01-16T15:31:28.473Z',
         backupImg: "http://cdn.earthporm.com/wp-content/uploads/2014/07/cute-bunnies-tongues-6.jpg",
         image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
         votes: 5,
@@ -16,21 +28,10 @@ var samplePosts = [
         ]
     },
     {
-        id: 2,
-        title: "Ripped off Toenail",
-        user: "Ben23423",
-        date: "March 16, 2016",
-        backupImg: "http://media.treehugger.com/assets/images/2015/07/sea-bunny-jorunna-parva.jpg.662x0_q70_crop-scale.jpg",
-        image: "https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png",
-        votes: 0,
-        description: "Cheese triangles cut the cheese cheesecake. Rubber cheese squirty cheese cheese slices parmesan halloumi the big cheese swiss cheesecake. Who moved my cheese caerphilly fromage frais brie cottage cheese.",
-        comments: []
-    },
-    {
         id: 3,
         title: "Suspension piercings gone wrong",
         user: "James123",
-        date: "April 1, 2016",
+        date: '2016-04-01T15:31:28.473Z',
         backupImg: "http://www.rabbit.org/adoption/bunny.jpg",
         image: "https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png",
         votes: -3,

@@ -10,28 +10,72 @@ app.controller('GrossControl',function($scope) {
     });
 
     $scope.posts = posts;
-    $scope.addPost = function() {
-        //push a newPost to $scope.posts
-    };
+    //all add post form stuff
     $scope.addForm = false;
     $scope.toggleAddForm = function() {
         $scope.addForm = !$scope.addForm;
     };
+    $scope.newPost = {
+            id: count++,
+            date: new Date(),
+            image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
+            votes: 0,
+            comments: []
+        };
 
+    $scope.addPost = function() {
+        $scope.posts.push($scope.newPost);
+        $scope.newPost = {
+                id: count++,
+                date: new Date(),
+                image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
+                votes: 0,
+                comments: []
+            };
+        $scope.addForm = false;
+    };
+    // all comment related stuff
     $scope.toggleComments = function(id) {
         toggleComments($scope,id);
     };
-
     $scope.toggleAddComment = function(id) {
         toggleAddComment($scope,id);
     };
+    $scope.newComment = {};
+    $scope.addComment = function(id) {
+        var postsArray = $scope.posts;
+        for (var i = 0; i < postsArray.length; i++) {
+            if (postsArray[i].id === id) {
+                postsArray[i].comments.push($scope.newComment);
+            }
+        }
+        $scope.newComment = {};
+        $scope.toggleAddComment(id);
+    };
+
+    //voting logic
+    $scope.upVote = function(id) {
+        for (var i = 0; i < $scope.posts.length; i++) {
+            if ($scope.posts[i].id === id) {
+                $scope.posts[i].votes++;
+            }
+        }
+    };
+    $scope.downVote = function(id) {
+        for (var i = 0; i < $scope.posts.length; i++) {
+            if ($scope.posts[i].id === id) {
+                $scope.posts[i].votes--;
+            }
+        }
+    }
+    //sorting
     $scope.sortPosts = function(property) {
         sort($scope, property);
     };
 });
 
+
 function sort(scope, property) {
-    // votes, title date
     if (property === "votes") {
         scope.posts.sort(sortByProperty("votes"));
     }
@@ -49,10 +93,10 @@ function sort(scope, property) {
 function sortByProperty(key) {
     return function (a, b) {
         if (a[key] > b[key]) {
-            return 1;
+            return -1;
         }
         if (a[key] < b[key]) {
-            return -1;
+            return 1;
         }
         // a must be equal to b
         return 0;
@@ -65,14 +109,20 @@ function getUniqueId(scope) {
 }
 
 function toggleComments(scope, id) {
-    scope.posts[0].expandedComments = !scope.posts[0].expandedComments;
-    //for posts in scope.posts
-        //toggle expandedComments on post where post.id == id
+    for (var i = 0; i < scope.posts.length; i++) {
+        if (scope.posts[i].id === id) {
+            scope.posts[i].expandedComments = !scope.posts[i].expandedComments;
+        }
+    }
 }
 
 function toggleAddComment(scope, id) {
-    scope.posts[0].expandedAddComment = !scope.posts[0].expandedAddComment;
-    //for posts in scope.posts
-        //toggle expandedAddComment on post where post.id == id
+    for (var i = 0; i < scope.posts.length; i++) {
+        if (scope.posts[i].id === id) {
+            scope.posts[i].expandedAddComment = !scope.posts[i].expandedAddComment;
+        }
+    }
+
+
 }
 

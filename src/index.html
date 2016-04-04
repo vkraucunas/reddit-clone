@@ -38,7 +38,11 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Search"
+                               ng-model="search"
+                               ng-keyup="doSearch()">
                     </div>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
@@ -54,7 +58,7 @@
         </nav>
     </header>
 
-
+    {{search}}
     <main>
         <div class="container"
              ng-show="addForm">
@@ -98,7 +102,7 @@
         </div>
         <div class="container">
             <div class="row well"
-                 ng-repeat="post in posts">
+                 ng-repeat="post in searchResults">
                 <div class="post"
                      >
                     <div class="row">
@@ -114,7 +118,7 @@
                                    ng-click="downVote(post.id)">
                                 </i>&nbsp;
                                 <span ng-class="{red: post.votes < 0, green: post.votes > 0}">
-                                    {{post.votes}}
+                                    {{post.votes}} Votes
                                 </span>
                             </h3>
                             <p>{{post.user}}</p>

@@ -73,57 +73,39 @@ app.controller('GrossControl',function($scope) {
     $scope.sortPosts = function(property) {
         sort($scope, property);
     };
+
+    //search logic
+    $scope.searchResults = $scope.posts;
+    $scope.search = '';
+    $scope.doSearch = function() {
+        $scope.searchResults = {};
+        for (var i = 0; i < $scope.posts.length; i++) {
+            var post = $scope.posts[i];
+            for (var key in post) {
+                var keyValue = post[key];
+
+                if(typeof keyValue === "number") {
+                    if(keyValue == Number($scope.search)) {
+                        $scope.searchResults[post.id] = post;
+                    }
+                } else if (typeof keyValue === "string") {
+                    if (post[key].toLowerCase().includes($scope.search.toLowerCase())) {
+                        $scope.searchResults[post.id] = post;
+                    }
+                    //try to loop through comments to search those as well. ugh.
+                    // for (var j = 0; j < post[key].comments.length; j++) {
+                    //     if (post[key].comments[j].user.toLowerCase().includes($scope.search.toLowerCase())) {
+                    //         $scope.searchResults[post.id] = post;
+                    //     }
+                    //     if (post[key].comments[j].text.toLowerCase().includes($scope.search.toLowerCase())) {
+                    //         $scope.searchResults[post.id] = post;
+                    //     }
+                    // }
+                }
+            }
+        }
+    }
 });
 
 
-function sort(scope, property) {
-    if (property === "votes") {
-        scope.posts.sort(sortByProperty("votes"));
-    }
-    if (property === "title") {
-        scope.posts.sort(sortByProperty("title"));
-    }
-    if (property === "date") {
-        scope.posts.sort(sortByProperty("date"));
-    }
-    if (property === "reverse") {
-        scope.posts.reverse();
-    }
-}
-
-function sortByProperty(key) {
-    return function (a, b) {
-        if (a[key] > b[key]) {
-            return -1;
-        }
-        if (a[key] < b[key]) {
-            return 1;
-        }
-        // a must be equal to b
-        return 0;
-        };
-}
-
-var count = 4;
-function getUniqueId(scope) {
-    count++
-}
-
-function toggleComments(scope, id) {
-    for (var i = 0; i < scope.posts.length; i++) {
-        if (scope.posts[i].id === id) {
-            scope.posts[i].expandedComments = !scope.posts[i].expandedComments;
-        }
-    }
-}
-
-function toggleAddComment(scope, id) {
-    for (var i = 0; i < scope.posts.length; i++) {
-        if (scope.posts[i].id === id) {
-            scope.posts[i].expandedAddComment = !scope.posts[i].expandedAddComment;
-        }
-    }
-
-
-}
 

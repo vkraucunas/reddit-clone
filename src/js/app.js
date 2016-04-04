@@ -1,57 +1,78 @@
 // sample angular code
 
-var app = angular.module('RedditApp', []);
+var app = angular.module('redditApp', []);
 
-app.controller('GrossControl', ['$scope', function($scope) {
-    $scope.id = 1;
-    $scope.posts = [
-        {
-            id: $scope.id++,
-            title: "Gruesome neck pop!",
-            user: "Death"
-            date: "January 18, 2016",
-            backupImg: "http://cdn.earthporm.com/wp-content/uploads/2014/07/cute-bunnies-tongues-6.jpg",
-            image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
-            votes: 5,
-            description: "Danish fontina cheese and biscuits everyone loves. Everyone loves the big cheese rubber cheese parmesan emmental who moved my cheese monterey jack red leicester.",
-            comments: [
-                {
-                    user: "Zoey",
-                    text: "Red leicester stinking bishop cheddar cut the cheese hard cheese cream cheese stilton stinking bishop."
-                }
-            ]
-        },
-        {
-            id: $scope.id++,
-            title: "Ripped off Toenail",
-            user: "Ben23423"
-            date: "March 16, 2016",
-            backupImg: "http://media.treehugger.com/assets/images/2015/07/sea-bunny-jorunna-parva.jpg.662x0_q70_crop-scale.jpg",
-            image: "https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png",
-            votes: 0,
-            description: "Cheese triangles cut the cheese cheesecake. Rubber cheese squirty cheese cheese slices parmesan halloumi the big cheese swiss cheesecake. Who moved my cheese caerphilly fromage frais brie cottage cheese.",
-            comments: []
-        },
-        {
-            id: $scope.id++,
-            title: "Suspension piercings gone wrong",
-            user: "James123"
-            date: "April 1, 2016",
-            backupImg: "http://www.rabbit.org/adoption/bunny.jpg",
-            image: "https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png",
-            votes: -3,
-            description: "Cottage cheese cheese slices cream cheese queso croque monsieur smelly cheese halloumi feta. Dolcelatte cheese and biscuits croque monsieur halloumi.",
-            comments: [
-                {
-                    user: "Ferdi",
-                    text: "Camembert de normandie stilton pecorino."
-                },
-                {
-                    user: "Ginger",
-                    text: "Camembert de normandie stilton pecorino."
-                }
-            ]
+app.controller('GrossControl',function($scope) {
+    var posts = samplePosts.map(x => {
+        x.expandedComments = false;
+        x.expandedAddComment = false;
+        return x;
+    });
+
+    $scope.posts = posts;
+    $scope.addPost = function() {
+        //push a newPost to $scope.posts
+    };
+    $scope.addForm = false;
+    $scope.toggleAddForm = function() {
+        $scope.addForm = !$scope.addForm;
+    };
+
+    $scope.toggleComments = function(id) {
+        toggleComments($scope,id);
+    };
+
+    $scope.toggleAddComment = function(id) {
+        toggleAddComment($scope,id);
+    };
+    $scope.sortPosts = function(property) {
+        sort($scope, property);
+    };
+});
+
+function sort(scope, property) {
+    // votes, title date
+    if (property === "votes") {
+        scope.posts.sort(sortByProperty("votes"));
+    }
+    if (property === "title") {
+        scope.posts.sort(sortByProperty("title"));
+    }
+    if (property === "date") {
+        scope.posts.sort(sortByProperty("date"));
+    }
+    if (property === "reverse") {
+        scope.posts.reverse();
+    }
+}
+
+function sortByProperty(key) {
+    return function (a, b) {
+        if (a[key] > b[key]) {
+            return 1;
         }
-    ]
-  $scope.greeting = "Hello World!";
-}]);
+        if (a[key] < b[key]) {
+            return -1;
+        }
+        // a must be equal to b
+        return 0;
+        };
+}
+
+var count = 4;
+function getUniqueId(scope) {
+    count++
+}
+
+function toggleComments(scope, id) {
+    scope.posts[0].expandedComments = !scope.posts[0].expandedComments;
+    //for posts in scope.posts
+        //toggle expandedComments on post where post.id == id
+}
+
+function toggleAddComment(scope, id) {
+    scope.posts[0].expandedAddComment = !scope.posts[0].expandedAddComment;
+    //for posts in scope.posts
+        //toggle expandedAddComment on post where post.id == id
+}
+

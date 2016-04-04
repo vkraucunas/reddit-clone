@@ -9,14 +9,19 @@ input {
 
 .well {
     background-color: #82877B;
+
 }
 
 img {
-    height: 250px;
-    width: 175px;
+    height: 150px;
+    width: 200px;
 }
 
 .inline {
     display: inline;
     margin-right: 15px;
+}
+
+.addCommentForm {
+    text-align: center;
 }

@@ -19,7 +19,6 @@ app.controller('GrossControl',function($scope) {
     $scope.newPost = {
             id: count++,
             date: new Date(),
-            image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
             votes: 0,
             comments: []
         };
@@ -29,7 +28,6 @@ app.controller('GrossControl',function($scope) {
         $scope.newPost = {
                 id: count++,
                 date: new Date(),
-                image: "https://i.ytimg.com/vi/iQq7cBkjCYU/hqdefault.jpg",
                 votes: 0,
                 comments: []
             };
@@ -68,7 +66,7 @@ app.controller('GrossControl',function($scope) {
                 $scope.posts[i].votes--;
             }
         }
-    }
+    };
     //sorting
     $scope.sortPosts = function(property) {
         sort($scope, property);
@@ -104,7 +102,7 @@ app.controller('GrossControl',function($scope) {
                 }
             }
         }
-    }
+    };
 });
 
 

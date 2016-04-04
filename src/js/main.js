@@ -1,15 +1,15 @@
 function sort(scope, property) {
     if (property === "votes") {
-        scope.posts.sort(reverseSortByProperty("votes"));
+        scope.searchResults.sort(reverseSortByProperty("votes"));
     }
     if (property === "title") {
-        scope.posts.sort(sortByProperty("title"));
+        scope.searchResults.sort(sortByProperty("title"));
     }
     if (property === "date") {
-        scope.posts.sort(reverseSortByProperty("date"));
+        scope.searchResults.sort(reverseSortByProperty("date"));
     }
     if (property === "reverse") {
-        scope.posts.reverse();
+        scope.searchResults.reverse();
     }
 }
 

@@ -68,15 +68,15 @@ app.controller('GrossControl',function($scope) {
         }
     };
     //sorting
-    $scope.sortPosts = function(property) {
-        sort($scope, property);
-    };
+    // $scope.sortPosts = function(property) {
+    //     sort($scope, property);
+    // };
 
     //search logic
     $scope.searchResults = $scope.posts;
     $scope.search = '';
-    $scope.doSearch = function() {
-        $scope.searchResults = {};
+    // $scope.doSearch = function() {
+        $scope.searchResults = [];
         for (var i = 0; i < $scope.posts.length; i++) {
             var post = $scope.posts[i];
             for (var key in post) {
@@ -84,11 +84,11 @@ app.controller('GrossControl',function($scope) {
 
                 if(typeof keyValue === "number") {
                     if(keyValue == Number($scope.search)) {
-                        $scope.searchResults[post.id] = post;
+                        $scope.searchResults.push(post);
                     }
                 } else if (typeof keyValue === "string") {
                     if (post[key].toLowerCase().includes($scope.search.toLowerCase())) {
-                        $scope.searchResults[post.id] = post;
+                        $scope.searchResults.push(post);
                     }
                     //try to loop through comments to search those as well. ugh.
                     // for (var j = 0; j < post[key].comments.length; j++) {
@@ -100,9 +100,18 @@ app.controller('GrossControl',function($scope) {
                     //     }
                     // }
                 }
+
             }
+            $scope.searchResults.reduce(function(prev, curr) {
+                console.log("previous is ", prev);
+                console.log("current is ", curr)
+                    // if (prev.id !== curr.id) {
+                    //     return curr;
+                    // }
+                return curr;
+                });
         }
-    };
+    // };
 });
 
 

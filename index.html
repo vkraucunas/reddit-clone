@@ -30,9 +30,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sort By <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li ng-click="sortPosts('date')"><a href="#">Date</a></li>
-                            <li ng-click="sortPosts('votes')"><a href="#">Rating</a></li>
-                            <li ng-click="sortPosts('title')"><a href="#">Title</a></li>
+                            <li ng-click="sortPosts='-date'"><a href="#">Date</a></li>
+                            <li ng-click="sortPosts='-votes'"><a href="#">Rating</a></li>
+                            <li ng-click="sortPosts='title'"><a href="#">Title</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -109,10 +109,9 @@
         </div>
         <div class="container">
             <div class="row well"
-                 ng-repeat="post in searchResults"
-                 ng-show="searchResults.include(search) || search === ''">
-                <div class="post"
-                     >
+                 ng-repeat="post in posts | filter:search | orderBy:sortPosts track by $index">
+                 <!-- ng-show="searchResults.include(search) || search === ''" -->
+                <div class="post">
                     <div class="row">
                         <div class="col-xs-3 imgChunk">
                             <div class="primary">

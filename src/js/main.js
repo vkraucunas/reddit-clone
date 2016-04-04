@@ -1,43 +1,4 @@
-function sort(scope, property) {
-    if (property === "votes") {
-        scope.searchResults.sort(reverseSortByProperty("votes"));
-    }
-    if (property === "title") {
-        scope.searchResults.sort(sortByProperty("title"));
-    }
-    if (property === "date") {
-        scope.searchResults.sort(reverseSortByProperty("date"));
-    }
-    if (property === "reverse") {
-        scope.searchResults.reverse();
-    }
-}
 
-function reverseSortByProperty(key) {
-    return function (a, b) {
-        if (a[key] > b[key]) {
-            return -1;
-        }
-        if (a[key] < b[key]) {
-            return 1;
-        }
-        // a must be equal to b
-        return 0;
-        };
-}
-
-function sortByProperty(key) {
-    return function (a, b) {
-        if (a[key] > b[key]) {
-            return 1;
-        }
-        if (a[key] < b[key]) {
-            return -1;
-        }
-        // a must be equal to b
-        return 0;
-        };
-}
 
 var count = 4;
 function getUniqueId(scope) {
@@ -58,11 +19,5 @@ function toggleAddComment(scope, id) {
             scope.posts[i].expandedAddComment = !scope.posts[i].expandedAddComment;
         }
     }
-
-
 }
-// add scripts
 
-$(document).on('ready', function() {
-  console.log('sanity check!');
-});

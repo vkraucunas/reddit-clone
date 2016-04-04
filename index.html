@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-88w0u/oucDSTE30ETLLIobzhT+bQ6CSsiqQyLZpwHvve89eqUA9F2Db6ST6jGRLx" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="src/css/main.css">
-
+    <link rel="stylesheet" type="text/css" href="src/css/flip.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -107,7 +107,8 @@
                      >
                     <div class="row">
                         <div class="col-xs-3">
-                            <img src="{{post.backupImg}}" alt="post image">
+                            <img src="{{post.backupImg}}" alt="bunny cover image" class="primary">
+                            <img src="{{post.image}}" alt="gross img" class="secondary">
                         </div>
                         <div class="col-xs-9">
                             <h3>{{post.title}}  |&nbsp;&nbsp;

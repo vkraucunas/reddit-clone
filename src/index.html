@@ -44,10 +44,12 @@
             </div>
         </nav>
     </header>
-    <main>
+
+
+    <main ng-controller="GrossControl">
         <div class="container"
              ng-show="addForm">
-            <form ng-submit="postForm">
+            <form ng-submit="postForm" class="form-horizontal">
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Username</label>
                     <div class="col-lg-10">
@@ -60,24 +62,24 @@
                     <label for="inputEmail" class="col-lg-2 control-label">Title</label>
                     <div class="col-lg-10">
                         <input type="text"
-                           ng-model="title"
-                           required>
+                               ng-model="title"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Image URL</label>
                     <div class="col-lg-10">
                         <input type="text"
-                           ng-model="backupImg"
-                           required>
+                               ng-model="backupImg"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Description</label>
                     <div class="col-lg-10">
                         <input type="text"
-                           ng-model="description"
-                           required>
+                               ng-model="description"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -87,6 +89,51 @@
             </form>
         </div>
         <div class="container">
+
+            <div class="post well"
+                 ng-repeat="post in posts">
+                <img src="{{post.backupImg}}" alt="post image">
+                <h3>{{post.title}}  |  <i class="fa fa-plus"></i> <i class="fa fa-minus-circle"></i> {{post.votes}}</h3>
+                <p>{{post.user}}</p>
+                <p>{{post.description}}</p>
+                <div>
+                    <p class="inline">{{post.date}}</p>
+                    <p class="inline">{{post.comments.length}} Comments</p>
+                    <p class="inline">Add Comment</p>
+
+                </div>
+                <div class="showComments"
+                     ng-show="showComments"
+                     ng-repeat="comment in comments">
+                     <p>{{comment.user}}</p>
+                     <p>{{comment.text}}</p>
+                </div>
+                <div class="commentForm"
+                     ng-show="addCommentShow">
+                    <h4>Add a Comment</h4>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Username</label>
+                            <div class="col-lg-10">
+                                <input type="text"
+                                   ng-model="user"
+                                   required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Comment</label>
+                            <div class="col-lg-10">
+                                <input type="text"
+                                   ng-model="text"
+                                   required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </main>

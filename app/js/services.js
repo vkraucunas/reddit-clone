@@ -17,4 +17,3 @@ function toggleAddComment(scope, id) {
         }
     }
 }
-

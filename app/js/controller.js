@@ -1,8 +1,3 @@
-// sample angular code
-
-var app = angular.module('redditApp', ['angularMoment']);
-// app.constant('moment', require('moment-timezone'));
-
 app.controller('GrossControl',function($scope) {
     var posts = samplePosts.map(x => {
         x.expandedComments = false;
